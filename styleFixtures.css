@@ -1,0 +1,529 @@
+/**
+ * ALL the UI design credit goes to:
+ * https://www.sketchappsources.com/free-source/2676-calendar-template-sketch-freebie-resource.html
+ */
+
+
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
+
+:root {
+  --background: rgb(100, 100, 100);
+  border-bottom: black;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+
+@keyframes slide {
+  0% {
+    transform:translateX(-25%);
+  }
+  100% {
+    transform:translateX(25%);
+  }
+}
+
+
+.bg {
+  animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-70deg, rgb(255, 115, 0) 50%, rgb(255, 251, 0) 50%);
+  bottom:0;
+  left:-50%;
+  opacity:.5;
+  position:fixed;
+  right:-50%;
+  top:0;
+  z-index:-1;
+}
+
+.bg2 {
+  animation-direction:alternate-reverse;
+  animation-duration:15s;
+}
+
+.bg3 {
+  animation-duration:11s;
+}
+
+
+/* The h and p section */
+
+h1 {
+  margin: 24px;
+  color: rgb(255, 255, 255);
+  font-family: "Noto Sans", 'Times New Roman', serif;
+  font-size: 35px;
+}
+
+
+h2 {
+  margin: 3px 12px 0px 3px !important;
+  color: rgb(255, 255, 255);
+  font-family: "Noto Sans", 'Times New Roman', serif;
+  font-size: 35px;
+  padding-left: 2%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+h3 {
+  margin: 24px;
+  color: white;
+  font-family: "Noto Sans", 'Times New Roman', serif;
+  font-size: 18px;
+  padding: 15px;
+}
+
+footer {
+  background: rgb(58, 58, 58);
+  background-image: linear-gradient(70deg, rgb(36, 36, 36) 50%, rgb(92, 92, 92) 50%);
+}
+/*body*/
+
+body {
+	margin: 0;
+	font-family: "Noto Sans";
+	font-weight: 400;
+  background: rgb(58, 58, 58);
+}
+
+.example {
+
+  overflow-y: scroll; /* Add the ability to scroll */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.example::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.example {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+
+/* this is the css for the main body */
+
+.content {
+  height: calc(2 / 275vw);
+  background-image: 7;
+  background-color: #333;
+  background: rgb(58, 58, 58);
+  background-blend-mode: multiply;
+  background-size: cover;
+  display: grid;
+  font-family: "Noto Sans", 'Times New Roman', serif;
+}
+
+/* navigation styles start here */
+
+header {
+  background: rgb(36, 36, 36);
+  text-align: center;
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  border-bottom: 2px, solid, black;
+}
+
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+  background: rgb(15, 219, 255)
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, .75);
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 8px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  background: rgb(36, 36, 36);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: all 300ms ease-in-out;
+  border-radius: 0 0 10px 10px;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav li {
+  margin-bottom: 1em;
+  margin-left: 1em;
+  border-bottom: 2px, white, #333
+}
+
+nav a {
+  color: rgb(206, 206, 206);
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: color 300ms ease-in-out;
+  height: 50%;
+  width: 90%;
+}
+
+nav a:hover {
+  color: white;
+}
+
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+}
+
+/* navigation styles start here */
+
+@media only screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+    height: 100px;
+    display: grid;
+    justify-content: center;
+  }
+  
+  .logo {
+    border-radius: 3px;
+    margin: auto auto;
+    z-index:100;
+  }
+  
+  nav {
+    position: relative;
+    text-align: left;
+
+    transform: scale(1,1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+    
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  nav ul {
+    display: flex;
+  }
+  
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+    border-radius: 3px;
+    justify-content: space-around;
+  }
+  
+  nav a {
+    opacity: 1;
+    position: relative;
+    color: rgb(255, 255, 255);
+  }
+  
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: white;
+    position: absolute;
+    top: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+  
+  nav a:hover::before {
+    transform: scale(1,1);
+  }
+}
+
+/* WRAPPER */
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr 70px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "sidebar"
+                       "content";
+  width: 100vw; /* unnecessary, but let's keep things consistent */
+  height: 100vh;
+}
+
+@media screen and (min-width: 600px) {
+  .CalendarContainer {
+  background: rgb(58, 58, 58);
+  margin: 150px auto 70px auto;
+  height: 665px;
+  width: 90%;
+  border-radius: 30px;
+  }
+  .smallwarning {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 378px) and (max-width: 600px) {
+  .CalendarContainer {
+  background: rgb(58, 58, 58);
+  margin: 150px auto 25px auto;
+  height: 710px;
+  width: 95%;
+  border-radius: 30px;
+  }
+  .smallwarning {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 378px) {
+  .CalendarContainer {
+  background: rgb(58, 58, 58);
+  margin: 150px auto 25px auto;
+  height: 755px;
+  width: 95%;
+  border-radius: 30px;
+  }
+  .smallwarning {
+    background-color: yellow;
+    padding: 100px 5px 20px 5px;
+    margin-top: 100px 0px 0px 0px;
+    height: auto;
+    width: 100%;
+    color: black;
+  }
+}
+
+
+/* MAIN */
+
+.toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.calendar{
+  margin: auto;
+  background-color: rgb(100, 100, 100);
+  width: 96%;
+  border-radius: 10px;
+}
+
+.calendar__week,
+.calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);  
+}
+.calendar__week {
+  grid-auto-rows: 100px;
+  text-align: right;
+}
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+  border-radius: 7px 7px 0px 0px;
+}
+
+.calendar__day {
+  padding: 16px;
+}
+
+
+
+
+/* COSMETIC STYLING */
+
+:root {
+  --red: #ED5454;
+}
+
+body {
+  font-family: "Noto Sans", 'Times New Roman', serif;
+  font-weight: 100;
+  color: rgb(0, 0, 0);
+}
+
+sidebar {
+  background-color: white;
+  box-shadow: 5px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+
+.avatar__name {
+  font-size: 0.8rem;
+}
+
+.menu__item {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 16px 16px 16px 14px;
+  border-left: 4px solid transparent;
+  color: inherit;
+  text-decoration: none;
+  transition: color ease 0.3s;
+}
+
+.menu__item--active .menu__icon {
+  color: var(--red);
+}
+.menu__item--active .menu__text {
+  color: black;
+}
+
+.menu__item:hover {
+  color: black;
+}
+
+
+.menu__icon {
+  font-size: 1.3rem;
+}
+
+.copyright {
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.calendar {
+  background-color: rgb(102, 102, 102);
+  border: 3px solid #000000;
+}
+
+.calendar__header {
+  background-color: rgb(51, 51, 51);
+  color: white;
+  border-left: black 3px;
+  border-right: black 3px;
+}
+
+.calendar__header > div {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.calendar__day {
+  border-right: 2px solid #000000;
+  border-top: 2px solid #000000;
+  color: black;
+  background: #747474;
+}
+
+
+.calendar__day__active{
+  border-right: 2px solid #000000;
+  border-top: 2px solid #000000;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  padding: 16px;
+  position: relative;
+}
+
+
+/* Dunno how hover works bruh*/
+
+.calendar__day__active::before {
+  border-right: 2px solid #000000;
+  border-top: 2px solid #000000;
+  color: black;
+  background: linear-gradient(40deg, rgb(46, 46, 46) 50%, rgb(255, 255, 255) 50%);
+  position: absolute;
+  width :5px;
+  padding: 16px;
+  transform: scale(0, 1);
+  transition: transform ease-in-out 250ms;
+}
+  
+.calendar__day__active:hover::before {
+  transform: scale(1,1);
+}
+
+
+
+
+
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+.calendar__day:last-child {
+  border-right: 0;
+}
