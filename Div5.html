@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DAVS Players</title>
+	<link href="stylePlayers.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet" />
+	<link rel="apple-touch-icon" sizes="180x180" href="DAVS_ICONS/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="DAVS_ICONS/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="DAVS_ICONS/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<script src="https://code.jquery.com/jquery-3.1.1.js">
+
+	</script>
+</head>
+
+
+<body class="example">
+	<header>
+		<h1 class="logo">DAVS</h1>
+		<input type="checkbox" id="nav-toggle" class="nav-toggle">
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="fixtures.html">Fixtures</a></li>
+        <li><a href="players.html">Players</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="awards.html">Awards</a></li>
+      </ul>
+    </nav>
+    <label for="nav-toggle" class="nav-toggle-label">
+      <span></span>
+    </label>
+  </header>
+<br>
+<br>
+<br>
+
+<!-- THIS PAGE IS DATA BASED, AMAN WILL DO THIS -->
+
+<!-- removed unknown stylesheet as it interfered with current stylesheet -->
+
+<!-- <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+</head> -->
+
+<body>
+  <div class='content'>
+      
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container_box">
+      <h1 class="text-center">U19 Basketball Players</h1>
+      <br>
+      <!-- Table Data -->
+      <div class="container">
+        <div style="height:100px;overflow:auto;min-height:500px">
+
+
+          <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="School name">
+          <a>&nbsp;</a>
+          <a>&nbsp;</a>
+          <a href="players.html">Div 1</a>
+          <a>&nbsp;</a>
+          <a>&nbsp;</a>
+          <!--<a href="Div2.html">Div 2</a>
+          <a>&nbsp;</a>
+          <a>&nbsp;</a>
+          <a href="Div3.html">Div 3</a>
+          <a>&nbsp;</a>
+          <a>&nbsp;</a>
+          <a href="Div4.html">Div 4</a>
+          <a>&nbsp;</a>
+          <a>&nbsp;</a>
+          <a href="Div5.html">Div 5</a>
+          <a>&nbsp;</a>
+          <a>&nbsp;</a>
+          <a href="Div6.html">Div 6</a>-->
+          <table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+            <thead>  
+              <tr>
+                  <th>Player name</th> 
+                  <th>School</th>
+                  <th>Jersey no.</th>
+                  <th>Points(PPG)</th>
+                  <th>Assists(APG)</th>
+                  <th>Rebounds(RPG)</th>
+              </tr>
+              <br>
+            </thead>
+            <tbody>
+            <tbody>  
+          </table>
+        </div>
+      </div>
+  
+
+
+    <script type="application/javascript">
+        function tableSearch() {
+            let input, filter, table, tr, td, txtValue;
+
+            //Intialising Variables
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (let i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+
+        }
+
+        function sortTableByColumn(table, column, asc = true) {
+            const dirModifier = asc ? 1 : -1;
+            const tBody = table.tBodies[0];
+            const rows = Array.from(tBody.querySelectorAll("tr"));
+
+            // Sort each row
+            const sortedRows = rows.sort((a, b) => {
+                const aColText = a.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
+                const bColText = b.querySelector(`td:nth-child(${ column + 1 })`).textContent.trim();
+
+                return aColText > bColText ? (1 * dirModifier) : (-1 * dirModifier);
+            });
+
+            // Remove all existing TRs from the table
+            while (tBody.firstChild) {
+                tBody.removeChild(tBody.firstChild);
+            }
+
+            // Re-add the newly sorted rows
+            tBody.append(...sortedRows);
+
+            // Remember how the column is currently sorted
+            table.querySelectorAll("th").forEach(th => th.classList.remove("th-sort-asc", "th-sort-desc"));
+            table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-asc", asc);
+            table.querySelector(`th:nth-child(${ column + 1})`).classList.toggle("th-sort-desc", !asc);
+        }
+
+        document.querySelectorAll(".table-sortable th").forEach(headerCell => {
+            headerCell.addEventListener("click", () => {
+                const tableElement = headerCell.parentElement.parentElement.parentElement;
+                const headerIndex = Array.prototype.indexOf.call(headerCell.parentElement.children, headerCell);
+                const currentIsAscending = headerCell.classList.contains("th-sort-asc");
+
+                sortTableByColumn(tableElement, headerIndex, !currentIsAscending);
+            });
+          });
+        </script>
+      </div>
+    </div>
+
+
+    <br>
+    <br>
+    <footer>
+      <br>
+      <div>
+        <h1 class="contact">Contact Us:</h1></div>
+      <div>
+        <h3 class="contact"> E-mail: dubaiathletes@outlook.com </h3>
+        <br>
+      </div>
+      <script src="script.js"></script>
+      </div>
+    </footer>
+
+  </body>
+</html>
